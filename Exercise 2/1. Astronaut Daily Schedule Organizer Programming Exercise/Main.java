@@ -14,7 +14,6 @@ public class Main {
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("H:mm");
 
     public static void main(String[] args) {
-        // Setup file handler for logging
         try {
             FileHandler fileHandler = new FileHandler("application.log", true);
             fileHandler.setFormatter(new SimpleFormatter());
@@ -34,7 +33,7 @@ public class Main {
                 displayMenu();
                 choice = getUserChoice(scanner);
                 handleUserChoice(choice, manager, scanner);
-            } while (choice != 8);  // Exit condition based on menu choice
+            } while (choice != 8);
 
         } catch (Exception e) {
             System.out.println("An error occurred: " + e.getMessage());
@@ -53,12 +52,12 @@ public class Main {
         int choice;
         try {
             choice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            scanner.nextLine();
         } catch (InputMismatchException e) {
             System.out.println("Invalid input. Please enter a number.");
             logger.warning("Invalid input. User provided non-numeric input.");
-            scanner.nextLine();  // Clear the buffer
-            choice = -1;  // Invalid choice
+            scanner.nextLine(); 
+            choice = -1; 
         }
         return choice;
     }
@@ -102,7 +101,7 @@ public class Main {
         LocalTime endTime = readTime(scanner, "Enter end time (H:mm): ");
         System.out.print("Enter priority: ");
         int priority = scanner.nextInt();
-        scanner.nextLine();  // Consume newline
+        scanner.nextLine(); 
 
         Task task = TaskFactory.createTask(description, startTime, endTime, priority);
         manager.addTask(task);
@@ -136,7 +135,7 @@ public class Main {
         LocalTime newEndTime = readTime(scanner, "Enter new end time (H:mm): ");
         System.out.print("Enter new priority: ");
         int newPriority = scanner.nextInt();
-        scanner.nextLine();  // Consume newline
+        scanner.nextLine(); 
 
         manager.editTask(oldDescription, newDescription, newStartTime, newEndTime, newPriority);
         logger.info("Edited task from: " + oldDescription + " to: " + newDescription);
