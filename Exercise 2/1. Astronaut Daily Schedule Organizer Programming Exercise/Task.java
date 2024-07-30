@@ -14,8 +14,6 @@ public class Task {
         this.priority = priority;
         this.completed = false;
     }
-
-    // Getters and setters for fields
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
